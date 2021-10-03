@@ -10,7 +10,7 @@
     android:gravity="center">
 
     <TextView
-        android:id="@+id/recivemessageTxt"
+        android:id="@+id/reciveMessageTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="전달받은 내용이  나올 자리"
