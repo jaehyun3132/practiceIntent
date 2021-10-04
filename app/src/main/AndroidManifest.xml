@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PracticeIntent">
         <activity
+            android:name=".EdtNickName"
+            android:exported="true" />
+        <activity
             android:name=".messageActivity"
             android:exported="true" />
         <activity
