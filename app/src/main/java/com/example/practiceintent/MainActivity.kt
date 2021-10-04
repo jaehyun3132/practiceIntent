@@ -9,7 +9,7 @@ class MainActivity : AppCompatActivity() {
 
     val  REQUEST_FOR_NICKNAME = 1005
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?)  {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         sendMessageBtn.setOnClickListener {
@@ -38,5 +38,25 @@ class MainActivity : AppCompatActivity() {
           startActivity(myIntent)
 
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+
+//돌아온 이유가 닉네임을 받으러 다녀온게 맞는지>
+
+        if(requestCode == REQUEST_FOR_NICKNAME) {
+
+//            추가질문 : 확인을 눌러서 돌아온게 맞는가?
+            if(resultCode == RESULT_OK){
+//                실제 첨부턴 새 닉네임 꺼내서 텍스트뷰에 반영
+
+                val newNickname = data?.getStringExtra("nickname")
+                nicknameTxt.text = newNickname
+            }
+        }
+
+
     }
 }
