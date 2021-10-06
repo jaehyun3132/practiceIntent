@@ -1,24 +1,50 @@
 package com.example.practiceintent
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    val  REQUEST_FOR_NICKNAME = 1005
+
 
     override fun onCreate(savedInstanceState: Bundle?)  {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        sendMessageBtn.setOnClickListener {
+        callBtn.setOnClickListener {
+
+
+            val inputPhoneNum = phoneNumEdt.text.toString()
+            val myUri = Uri.parse("tel :${inputPhoneNum}")
+            val myIntent = Intent(Intent.ACTION_CALL, myUri)
+            startActivity(myIntent)
+
+
+        }
+
+
+
+
+        dialBtn.setOnClickListener {
+//phoneNumEdt 에 입력한 전화번호를 받아서 => 해당번호에 전화연결
+            val inputPhoneNum = phoneNumEdt.text.toString()
+            val myUri = Uri.parse("tel :${inputPhoneNum}")
+            val myIntent = Intent(Intent.ACTION_DIAL, myUri)
+            startActivity(myIntent)
+
+
+
+        }
+
+        sendMessageBtn.setOnClickListener{
 //         입력한 내용을 변수에 저장
 
             editNicknameBtn.setOnClickListener {
 
                 val myIntent = Intent(this, EdtNickName::class.java)
-                startActivityForResult(myIntent,REQUEST_FOR_NICKNAME)
+                startActivityForResult (myIntent,1005)
             }
             val inputMessage =messageEdt.text.toString()
 
@@ -46,7 +72,7 @@ class MainActivity : AppCompatActivity() {
 
 //돌아온 이유가 닉네임을 받으러 다녀온게 맞는지>
 
-        if(requestCode == REQUEST_FOR_NICKNAME) {
+        if(requestCode == 1005) {
 
 //            추가질문 : 확인을 눌러서 돌아온게 맞는가?
             if(resultCode == RESULT_OK){
